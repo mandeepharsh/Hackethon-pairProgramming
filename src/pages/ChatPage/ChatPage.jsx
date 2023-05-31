@@ -1,8 +1,6 @@
 // import axios from 'axios';
 // import React, { useState, useEffect } from 'react';
 
-
-
 // const ChatPage = () => {
 //   const [challengeIndex, setChallengeIndex] = useState(0);
 //   const [code, setCode] = useState('');
@@ -27,8 +25,6 @@
 //   }
 
 //   const currentChallenge = codingChallenges[challengeIndex];
-  
-
 
 //   const handleNextChallenge = () => {
 //     const nextIndex = challengeIndex + 1;
@@ -42,7 +38,7 @@
 //   const handleRunCode = () => {
 //     const currentChallenge = codingChallenges[challengeIndex];
 //     const expectedOutput = eval(currentChallenge.solution);
-  
+
 //     try {
 //       const userOutput = eval(code);
 //       setIsAnswerCorrect(userOutput === expectedOutput);
@@ -94,33 +90,30 @@
 
 // export default ChatPage;
 
-
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
-import './ChatPage.scss';
-
-
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { LiveProvider, LiveEditor, LiveError } from "react-live";
+import "./ChatPage.scss";
 
 const ChatPage = () => {
   const [challengeIndex, setChallengeIndex] = useState(0);
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState("");
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
   const [showResult, setShowResult] = useState(false);
-  const [output, setOutput] = useState('');
+  const [output, setOutput] = useState("");
   const [codingChallenges, setCodingChallenges] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     // Fetch coding challenges from the API
     axios
-      .get('http://localhost:8080/question')
+      .get("http://localhost:8080/question")
       .then((response) => {
         // Set the coding challenges to the fetched data
         setCodingChallenges(response.data);
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching coding challenges:', error);
+        console.error("Error fetching coding challenges:", error);
       });
   }, []);
 
@@ -134,22 +127,22 @@ const ChatPage = () => {
     const nextIndex = challengeIndex + 1;
     if (nextIndex < codingChallenges.length) {
       setChallengeIndex(nextIndex);
-      setCode('');
+      setCode("");
       setIsAnswerCorrect(null);
       setShowResult(false);
-      setOutput(''); // Reset the output
+      setOutput(""); // Reset the output
     }
   };
 
   const handleCheckAnswer = () => {
-    if (code.trim() === '') {
+    if (code.trim() === "") {
       setIsAnswerCorrect(false);
       setShowResult(true);
-      setOutput('No code provided.'); // Set the output
+      setOutput("No code provided."); // Set the output
     } else {
       const currentChallenge = codingChallenges[challengeIndex];
       const expectedOutput = eval(currentChallenge.solution);
-    
+
       try {
         const userOutput = eval(code);
         setIsAnswerCorrect(userOutput === expectedOutput);
@@ -163,9 +156,16 @@ const ChatPage = () => {
     }
   };
 
+  const handleRetry = () => {
+    setIsAnswerCorrect(null);
+    setShowResult(false);
+    setOutput("");
+    setCode("");
+  };
+
   return (
     <div className="chat-page">
-      <h1 className="chat-page__title">Coding Challenge</h1>
+      <h1 className="chat-page__title">Daily Improvement</h1>
       <div className="chat-page__question-container">
         <h2 className="chat-page__subtitle">Question</h2>
         <p className="chat-page__question">{currentChallenge.question}</p>
@@ -174,25 +174,39 @@ const ChatPage = () => {
         <h2 className="chat-page__subtitle">Your Answer</h2>
         <LiveProvider code={code}>
           <LiveEditor onChange={setCode} className="chat-page__code-editor" />
-          <LivePreview />
-          {code !== ""  && <LiveError />}
+          <div className="chat-page__live-editor">
+            {code !== "" && <LiveError />}
+          </div>
         </LiveProvider>
-        
       </div>
       <div className="chat-page__result-container">
         {showResult && (
           <>
-            <h2 className={`chat-page__result-title ${isAnswerCorrect ? 'chat-page__result-title--correct' : 'chat-page__result-title--incorrect'}`}>
-              {isAnswerCorrect ? 'Correct!' : 'Incorrect!'}
+            <h2
+              className={`chat-page__result-title ${
+                isAnswerCorrect
+                  ? "chat-page__result-title--correct"
+                  : "chat-page__result-title--incorrect"
+              }`}
+            >
+              {isAnswerCorrect ? "Correct!" : "Incorrect!"}
             </h2>
             <p className="chat-page__output">{output}</p>
           </>
         )}
       </div>
       <div className="chat-page__button-container">
-        <button className="chat-page__check-answer-button" onClick={handleCheckAnswer}>
+        <button
+          className="chat-page__check-answer-button"
+          onClick={handleCheckAnswer}
+        >
           Check Answer
         </button>
+        {showResult && (
+          <button className="chat-page__retry-button" onClick={handleRetry}>
+            Retry
+          </button>
+        )}
         <button
           className="chat-page__next-button"
           onClick={handleNextChallenge}
@@ -206,8 +220,3 @@ const ChatPage = () => {
 };
 
 export default ChatPage;
-
-
-
-
-
