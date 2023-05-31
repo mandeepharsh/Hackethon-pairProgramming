@@ -1,0 +1,33 @@
+.hero {
+  display: flex;
+  justify-content: space-evenly;
+  &__container {
+    height: 15rem;
+    width: 40%;
+    border: 1px solid rgb(86, 86, 86);
+    background-color: rgb(16, 16, 16);
+    opacity: 0.6;
+    border-radius: 5px;
+    margin: 0.625rem;
+  }
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__subtittle {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 30px;
+  }
+}
+
+a:link {
+  text-decoration: none;
+}
