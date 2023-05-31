@@ -149,7 +149,7 @@ const ChatPage = () => {
     } else {
       const currentChallenge = codingChallenges[challengeIndex];
       const expectedOutput = eval(currentChallenge.solution);
-    
+  
       try {
         const userOutput = eval(code);
         setIsAnswerCorrect(userOutput === expectedOutput);
@@ -161,6 +161,12 @@ const ChatPage = () => {
         setOutput(error.toString()); // Set the error message as output
       }
     }
+  };
+  
+  const handleRetry = () => {
+    setIsAnswerCorrect(null);
+    setShowResult(false);
+    setOutput('');
   };
 
   return (
@@ -190,14 +196,19 @@ const ChatPage = () => {
         )}
       </div>
       <div className="chat-page__button-container">
-        <button className="chat-page__check-answer-button" onClick={handleCheckAnswer}>
-          Check Answer
-        </button>
-        <button
-          className="chat-page__next-button"
-          onClick={handleNextChallenge}
-          disabled={isAnswerCorrect === false || !showResult}
-        >
+  <button className="chat-page__check-answer-button" onClick={handleCheckAnswer}>
+    Check Answer
+  </button>
+  {showResult && (
+    <button className="chat-page__retry-button" onClick={handleRetry}>
+      Retry
+    </button>
+  )}
+  <button
+    className="chat-page__next-button"
+    onClick={handleNextChallenge}
+    disabled={isAnswerCorrect === false || !showResult}
+  >
           Next Challenge
         </button>
       </div>
