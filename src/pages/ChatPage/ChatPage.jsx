@@ -142,7 +142,6 @@ const ChatPage = () => {
     } else {
       const currentChallenge = codingChallenges[challengeIndex];
       const expectedOutput = eval(currentChallenge.solution);
-
       try {
         const userOutput = eval(code);
         setIsAnswerCorrect(userOutput === expectedOutput);
