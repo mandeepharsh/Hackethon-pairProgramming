@@ -1,0 +1,14 @@
+.footer {
+  height: 3.25rem;
+  background-color: rgb(217, 217, 217);
+
+  &__div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+
+    font-size: 20px;
+  }
+}
