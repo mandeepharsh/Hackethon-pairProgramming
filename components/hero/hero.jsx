@@ -13,7 +13,9 @@ function Hero() {
 
         <Link className="hero__chat hero__container" to="/chat">
           <div>
-            <p className="hero__chat-subtittle hero__subtittle">AI challange</p>
+            <p className="hero__chat-subtittle hero__subtittle">
+              Daily Improvement
+            </p>
           </div>
         </Link>
       </section>

@@ -10,4 +10,12 @@
     font-weight: bold;
     justify-content: end;
   }
+  &__link {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+a:link {
+  text-decoration: none;
 }

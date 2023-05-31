@@ -1,10 +1,13 @@
 import "../header/header.scss";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <>
       <div className="header">
-        <p className="header__logo">HA.TH</p>
+        <Link className="header__link" to="/">
+          <p className="header__logo">HA.TH</p>
+        </Link>
       </div>
     </>
   );
