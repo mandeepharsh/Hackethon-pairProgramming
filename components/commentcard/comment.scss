@@ -1,6 +1,19 @@
 .comment {
-  color: white;
+  color: black;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  background-color: rgb(211, 211, 211);
+  border: none;
+  border-radius: 5px;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  padding: 1rem;
+
+  &__name {
+    font-weight: bold;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    font-size: 18px;
+  }
 }

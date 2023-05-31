@@ -94,6 +94,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { LiveProvider, LiveEditor, LiveError } from "react-live";
 import "./ChatPage.scss";
+import Loading from "../../../components/Loader/Loader";
 
 const ChatPage = () => {
   const [challengeIndex, setChallengeIndex] = useState(0);
@@ -116,7 +117,7 @@ const ChatPage = () => {
   }, []);
 
   if (isLoading) {
-    return <div className="chat-page__loading">Loading...</div>;
+    return <Loading />;
   }
 
   const currentChallenge = codingChallenges[challengeIndex];
