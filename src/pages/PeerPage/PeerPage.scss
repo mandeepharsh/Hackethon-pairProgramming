@@ -1,0 +1,14 @@
+.student-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.comments {
+  background-color: rgb(16, 16, 16);
+  opacity: 0.8;
+  border: 1px solid rgb(86, 86, 86);
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 70px;
+}

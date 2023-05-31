@@ -104,11 +104,9 @@ const ChatPage = () => {
   const [codingChallenges, setCodingChallenges] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    // Fetch coding challenges from the API
     axios
       .get("http://localhost:8080/question")
       .then((response) => {
-        // Set the coding challenges to the fetched data
         setCodingChallenges(response.data);
         setIsLoading(false);
       })
