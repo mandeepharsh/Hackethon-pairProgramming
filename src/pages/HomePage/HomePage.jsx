@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../HomePage/HomePage.scss";
 import Hero from "../../../components/hero/hero";
+import Loading from "../../../components/Loader/Loader";
 
 const HomePage = () => {
   const [quotes, setQuotes] = useState([]);
@@ -45,7 +46,7 @@ const HomePage = () => {
     <>
       <div className="home-page">
         {isLoading ? (
-          <p className="home-page__loading">Loading...</p>
+          <Loading />
         ) : quotes.length > 0 ? (
           <div className="home-page__quote" onClick={nextQuote}>
             <Quote text={currentQuote.text} author={currentQuote.author} />
